@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
-from torch.autograd import Function as F
-from StandardBinarized import *
+from torch.autograd import Function, Variable
+import torch.nn.functional as F
 import math
+from StandardBinarized import *
 
 class BinaryLinear(nn.Linear):
 
