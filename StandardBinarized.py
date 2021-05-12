@@ -13,3 +13,5 @@ class StandBinarize(Function):
     def backward(cxt, grad_output):
         grad_input = grad_output.clone()
         return grad_input
+    
+stand_bin = StadardBinarised.apply
