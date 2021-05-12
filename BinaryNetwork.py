@@ -11,7 +11,7 @@ class BinaryLinear(nn.Linear):
         super(BinaryLinear, self).__init__(*kargs, **kwargs)
 
     def forward(self, input):
-        binary_weight = StandBinarize.apply(self.weight)
+        binary_weight = stand_bin(self.weight)
         if self.bias is None:
             return F.linear(input, binary_weight)
         else:
