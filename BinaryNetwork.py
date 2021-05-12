@@ -7,8 +7,7 @@ from StandardBinarized import *
 
 class BinaryLinear(nn.Linear):
 
-    def __init__(self, *kargs, **kwargs):
-        super(BinaryLinear, self).__init__(*kargs, **kwargs)
+    
 
     def forward(self, input):
         binary_weight = stand_bin(self.weight)
@@ -16,6 +15,17 @@ class BinaryLinear(nn.Linear):
             return F.linear(input, binary_weight)
         else:
             return F.linear(input, binary_weight, self.bias)
+        
+    def reset_parameters(self):
+        # Glorot initialization
+        in_features, out_features = self.weight.size()
+        stdv = math.sqrt(1.5 / (in_features + out_features))
+        self.weight.data.uniform_(-stdv, stdv)
+        if self.bias is not None:
+            self.bias.data.zero_()
+
+        self.weight.lr_scale = 1. / stdv
+
 
 
 
