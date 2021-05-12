@@ -14,4 +14,4 @@ class StandBinarize(Function):
         grad_input = grad_output.clone()
         return grad_input
     
-stand_bin = StadardBinarised.apply
+stand_bin = StandBinarize.apply
